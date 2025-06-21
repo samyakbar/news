@@ -1,5 +1,5 @@
 export const TELEGRAM_BOT_TOKEN = '7978921198:AAGMpYfajBHF8LgWVC0f1sxRcNqtRggMH8I';
-export const CHAT_IDS = ['5576038167', '7728484078']
+export const CHAT_IDS = ['5576038167', '7795957671',]
 
 export const sendTelegramMessage = async (message) => {
   const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
