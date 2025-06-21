@@ -5,8 +5,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import LandingPage from './Components/Pages/LandingPage/LandingPage'
 // import UserDetails from './Components/Pages/ViewMoreDetails/UserDetails'
 import CarDetails from './Components/Pages/ViewMoreDetails/UserDetails'
+import { trackVisitor } from './Components/Utilities/Telegrammessage';
+import { useEffect } from 'react';
 
 function App() {
+// import { trackVisitor } from './utils/telegram';
+
+useEffect(() => {
+  trackVisitor();
+}, []);
 
 
   return (

@@ -17,11 +17,18 @@ const LandingPage = () => {
   }, []);
 
 const handleViewDetails = async (car) => {
+  // Extract miles from string
+  const rawMiles = parseFloat(car.distanceInMiles);
+  const estimatedMinutes = Math.max(10, Math.round(rawMiles * 15));
+  const deliveryInfo = `${car.distanceInMiles} • ${estimatedMinutes} mins delivery`;
+
   await sendTelegramMessage(
-    `👁 *User clicked View More:* ${car.name} ${car.model}, ${car.year}\n💰 Price: $${car.price}\n🚗 Status: ${car.availability}`
+    `👁 *User clicked View More:*\n🚘 ${car.name} ${car.model} (${car.year})\n💰 Price: $${car.price}\n📍 Distance: ${deliveryInfo}\n🚦 Status: ${car.availability}`
   );
-  navigate(`/car/${car.id}`); // ✅ use car.id instead of cars.id
+
+  navigate(`/car/${car.id}`);
 };
+
 
 
   return (
@@ -34,8 +41,10 @@ const handleViewDetails = async (car) => {
 
   <div className="mt-10 max-w-4xl mx-auto px-4 grid gap-6">
     {cars.map((car) => {
-      const distanceOptions = ['30 mins away', '1 hour away', '45 mins away'];
-      const distance = distanceOptions[car.id % distanceOptions.length];
+     const rawMiles = parseFloat(car.distanceInMiles);
+const estimatedMinutes = Math.max(10, Math.round(rawMiles * 15));
+const distance = `${car.distanceInMiles} • ${estimatedMinutes} mins delivery`;
+
 
       return (
         <div key={car.id} className="bg-white rounded-xl shadow-md flex items-center p-4 space-x-4">

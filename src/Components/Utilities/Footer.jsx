@@ -13,7 +13,7 @@ const Footer = () => {
           </p>
           <div className="flex items-center mt-3 space-x-2 text-gray-400 text-sm">
             <MapPin className="w-4 h-4" />
-            <span>Overland Park, Kansas</span>
+            {/* <span>Overland Park, Kansas</span> */}
           </div>
         </div>
 
@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
           <div className="flex items-center space-x-2 text-gray-300 text-sm mb-2">
             <Phone className="w-4 h-4" />
-            <span>+1 (913) 555-8765</span>
+            {/* <span>+1 (913) 555-8765</span> */}
           </div>
         </div>
       </div>

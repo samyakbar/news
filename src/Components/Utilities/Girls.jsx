@@ -121,16 +121,15 @@ import hyundai from '../../assets/hyundai.jpeg'
 import nissan from '../../assets/nissan.jpeg'
 
 
-export const cars = [
+export const cars = [ 
   {
     id: 1,
     name: 'Mercedes-Benz',
     model: 'C-Class',
     year: 2022,
-    images: [
-      Mercedes
-    ],
-    price: 350,
+    images: [Mercedes],
+    price: 109,
+    distanceInMiles: '1.2 miles',
     availability: 'Available',
   },
   {
@@ -138,10 +137,9 @@ export const cars = [
     name: 'BMW',
     model: '3 Series',
     year: 2021,
-    images: [
-     bmw
-    ],
-    price: 400,
+    images: [bmw],
+    price: 102,
+    distanceInMiles: '0.9 miles',
     availability: 'Available',
   },
   {
@@ -149,10 +147,9 @@ export const cars = [
     name: 'Audi',
     model: 'A4',
     year: 2020,
-    images: [
-      audi
-    ],
-    price: 380,
+    images: [audi],
+    price: 100,
+    distanceInMiles: '1.5 miles',
     availability: 'Available',
   },
   {
@@ -160,10 +157,9 @@ export const cars = [
     name: 'Lexus',
     model: 'ES 350',
     year: 2022,
-    images: [
-     lexus
-    ],
-    price: 420,
+    images: [lexus],
+    price: 115,
+    distanceInMiles: '2.0 miles',
     availability: 'Available',
   },
   {
@@ -171,10 +167,9 @@ export const cars = [
     name: 'Toyota',
     model: 'Camry XSE',
     year: 2023,
-    images: [
-     camry
-    ],
-    price: 330,
+    images: [camry],
+    price: 101,
+    distanceInMiles: '0.7 miles',
     availability: 'Available',
   },
   {
@@ -182,10 +177,9 @@ export const cars = [
     name: 'Tesla',
     model: 'Model 3',
     year: 2023,
-    images: [
-      tesla
-    ],
-    price: 480,
+    images: [tesla],
+    price: 120,
+    distanceInMiles: '1.8 miles',
     availability: 'Available',
   },
   {
@@ -193,10 +187,9 @@ export const cars = [
     name: 'Kia',
     model: 'K5 GT',
     year: 2022,
-    images: [
-     kia
-    ],
-    price: 310,
+    images: [kia],
+    price: 104,
+    distanceInMiles: '0.5 miles',
     availability: 'Available',
   },
   {
@@ -204,10 +197,9 @@ export const cars = [
     name: 'Ford',
     model: 'Mustang GT',
     year: 2021,
-    images: [
-     ford
-    ],
-    price: 390,
+    images: [ford],
+    price: 107,
+    distanceInMiles: '2.4 miles',
     availability: 'Rented',
   },
   {
@@ -215,10 +207,9 @@ export const cars = [
     name: 'Honda',
     model: 'Civic Sport',
     year: 2022,
-    images: [
-      honda
-    ],
-    price: 280,
+    images: [honda],
+    price: 103,
+    distanceInMiles: '0.6 miles',
     availability: 'Rented',
   },
   {
@@ -226,10 +217,9 @@ export const cars = [
     name: 'Chevrolet',
     model: 'Malibu',
     year: 2020,
-    images: [
-     chevrolet
-    ],
-    price: 260,
+    images: [chevrolet],
+    price: 100,
+    distanceInMiles: '1.1 miles',
     availability: 'Rented',
   },
   {
@@ -237,10 +227,9 @@ export const cars = [
     name: 'Hyundai',
     model: 'Elantra N',
     year: 2023,
-    images: [
-      hyundai
-    ],
-    price: 270,
+    images: [hyundai],
+    price: 106,
+    distanceInMiles: '1.6 miles',
     availability: 'Unavailable',
   },
   {
@@ -248,12 +237,12 @@ export const cars = [
     name: 'Nissan',
     model: 'Altima',
     year: 2021,
-    images: [
-     nissan
-    ],
-    price: 290,
+    images: [nissan],
+    price: 105,
+    distanceInMiles: '0.4 miles',
     availability: 'Unavailable',
   },
 ];
+
 
 
