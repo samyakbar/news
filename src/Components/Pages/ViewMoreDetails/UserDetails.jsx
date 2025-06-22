@@ -30,8 +30,8 @@ const CarDetails = () => {
     const gallery = car.images;
     const price = car.price;
     const rawMiles = parseFloat(car.distanceInMiles);
-const estimatedMinutes = Math.max(10, Math.round(rawMiles * 15));
-const distance = `${car.distanceInMiles} • ${estimatedMinutes} mins delivery`;
+    const estimatedMinutes = Math.max(10, Math.round(rawMiles * 15));
+    const distance = `${car.distanceInMiles} • ${estimatedMinutes} mins delivery`;
 
 
     const handleImageChange = async (e, setImageFn) => {
@@ -156,13 +156,16 @@ const distance = `${car.distanceInMiles} • ${estimatedMinutes} mins delivery`;
                                         </button>
                                         {copied && <span className="text-green-600 text-xs font-normal">Copied! ✅</span>}
                                     </div>
-                                    <div>Carol Ann Anderson</div>
+                                    <div>701-200-4727</div>
+                                    <div>Montanna Schnebelt</div>
                                 </div>
+
                                 <input type="text" value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} placeholder="Zelle Account Used" className="mb-2 w-full border p-2 rounded" />
                                 {!image ? (
                                     <>
                                         <label className="block mb-2 text-sm font-medium text-gray-700">Upload Zelle Screenshot</label>
-                                        <input type="file" accept="image/*" capture="environment" onChange={(e) => handleImageChange(e, setImage)} className="mb-4" />
+                                        <input type="file" accept="image/*" onChange={(e) => handleImageChange(e, setImage)} />
+                                        <p className="text-xs text-gray-500 mb-2">Please upload a screenshot of your Zelle payment confirmation.</p>
                                     </>
                                 ) : (
                                     <div className="mb-4">

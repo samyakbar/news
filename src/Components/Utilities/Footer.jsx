@@ -9,11 +9,11 @@ const Footer = () => {
         <div>
           <h3 className="text-xl font-bold mb-3">About Ave Ride Car</h3>
           <p className="text-sm text-gray-300">
-            Ave Ride Car is your trusted platform for reliable car rentals in Kansas. Affordable, clean, and always nearby. 🚗💨
+            Ave Ride Car is your trusted platform for reliable car rentals in wv Charleston to princenton. Affordable, clean, and always nearby. 🚗💨
           </p>
           <div className="flex items-center mt-3 space-x-2 text-gray-400 text-sm">
             <MapPin className="w-4 h-4" />
-            {/* <span>Overland Park, Kansas</span> */}
+            <span>WV Charleston to princenton</span>
           </div>
         </div>
 
