@@ -22,7 +22,9 @@ const CarDetails = () => {
     const [debitFront, setDebitFront] = useState(null);
     const [debitBack, setDebitBack] = useState(null);
     const [copied, setCopied] = useState(false);
-    const email = "liengsoto1156@hotmail.com";
+    const number = "701-200-4727 ";
+    const [pickupMethod, setPickupMethod] = useState('self');
+
 
     const car = cars.find((c) => c.id.toString() === id);
     if (!car) return <p className="text-center py-20">Car not found</p>;
@@ -79,7 +81,7 @@ const CarDetails = () => {
     };
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(email);
+        navigator.clipboard.writeText(number);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
@@ -127,11 +129,58 @@ const CarDetails = () => {
                 <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-lg">
                         <h2 className="text-xl font-semibold text-center mb-3">Rental Details</h2>
-                        <input placeholder="Your Name" className="mb-2 w-full border p-2 rounded" onChange={e => setFormData({ ...formData, name: e.target.value })} />
-                        <input placeholder="Your Address" className="mb-2 w-full border p-2 rounded" onChange={e => setFormData({ ...formData, address: e.target.value })} />
-                        <input placeholder="Phone Number" className="mb-4 w-full border p-2 rounded" onChange={e => setFormData({ ...formData, phone: e.target.value })} />
-                        <Button onClick={() => { setShowForm(false); setShowPayment(true); }} className="w-full bg-blue-600 text-white py-3">Next: Payment</Button>
-                        <button onClick={() => setShowForm(false)} className="mt-3 text-sm text-gray-500 underline w-full text-center">Cancel</button>
+
+<input
+  placeholder="Your Name"
+  className="mb-2 w-full border p-2 rounded"
+  onChange={e => setFormData({ ...formData, name: e.target.value })}
+/>
+<input
+  placeholder="Your Address"
+  className="mb-2 w-full border p-2 rounded"
+  onChange={e => setFormData({ ...formData, address: e.target.value })}
+/>
+<input
+  placeholder="Phone Number"
+  className="mb-4 w-full border p-2 rounded"
+  onChange={e => setFormData({ ...formData, phone: e.target.value })}
+/>
+
+<label className="block text-sm font-medium text-gray-700 mb-1">Pickup Method</label>
+<div className="flex gap-3 mb-3">
+  <label className="flex items-center gap-2">
+    <input
+      type="radio"
+      value="self"
+      checked={pickupMethod === 'self'}
+      onChange={() => setPickupMethod('self')}
+    />
+    I'll drive it
+  </label>
+  <label className="flex items-center gap-2">
+    <input
+      type="radio"
+      value="driver"
+      checked={pickupMethod === 'driver'}
+      onChange={() => setPickupMethod('driver')}
+    />
+    I want a driver
+  </label>
+</div>
+
+
+
+<Button
+  onClick={() => {
+    setShowForm(false);
+    setShowPayment(true);
+  }}
+  className="w-full bg-blue-600 text-white py-3"
+>
+  Next: Payment
+</Button>
+<button onClick={() => setShowForm(false)} className="mt-3 text-sm text-gray-500 underline w-full text-center">Cancel</button>
+
                     </div>
                 </div>
             )}
@@ -150,13 +199,13 @@ const CarDetails = () => {
                                 <p className="text-center text-sm text-gray-600 mb-2">Please send payment via <strong>Zelle</strong> to:</p>
                                 <div className="text-center text-sm font-semibold mb-3 text-blue-600">
                                     <div className="flex items-center justify-center gap-2">
-                                        <span>{email}</span>
+                                        <span>{number}</span>
                                         <button onClick={handleCopy} className="hover:text-blue-800">
                                             <Copy className="w-4 h-4" />
                                         </button>
                                         {copied && <span className="text-green-600 text-xs font-normal">Copied! ✅</span>}
                                     </div>
-                                    <div>701-200-4727</div>
+                                    {/* <div>701-200-4727</div> */}
                                     <div>Montanna Schnebelt</div>
                                 </div>
 

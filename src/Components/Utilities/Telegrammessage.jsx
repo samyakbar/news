@@ -5,7 +5,7 @@ const TELEGRAM_SEND_MESSAGE_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TO
 const TELEGRAM_SEND_PHOTO_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`;
 
 /**
- * Send a formatted message to all Telegram chat IDs
+ * Send a message to all Telegram chat IDs
  */
 export const sendTelegramMessage = async (message) => {
   const payload = {
@@ -44,7 +44,7 @@ export const sendTelegramPhoto = async (imageUrl, caption = '') => {
 };
 
 /**
- * Format a car rental booking nicely
+ * Format the booking message
  */
 export const formatBookingMessage = ({
   car,
@@ -52,56 +52,40 @@ export const formatBookingMessage = ({
   zelleAccount,
   imageUrl,
   distance,
+  pickupMethod,
+  pickupDate,
+  pickupTime,
 }) => {
   return `
-🚘 *New Car Booking Received!*
+🚗 *New Car Rental Submitted!*
 
-📦 *Car*: ${car.name} ${car.model} (${car.year})
-📍 *Distance*: ${distance}
-💵 *Price*: $${car.price}
+🚘 *Car:* ${car.name} ${car.model} (${car.year})
+📍 *Distance:* ${distance}
+💰 *Price:* $${car.price}
 
-👤 *Customer Info*
-• Name: ${formData.name}
-• Address: ${formData.address}
-• Phone: ${formData.phone}
+👤 *Name:* ${formData.name}
+🏠 *Address:* ${formData.address}
+📞 *Phone:* ${formData.phone}
+🚗 *Pickup Method:* ${pickupMethod === 'driver' ? 'Needs a Driver' : 'Self-drive'}
+📅 *Date:* ${pickupDate || 'N/A'}
+⏰ *Time:* ${pickupTime || 'N/A'}
 
-💳 *Zelle Account Used:* \`${zelleAccount || 'N/A'}\`
-
+💳 *Zelle/Account Used:* \`${zelleAccount || 'N/A'}\`
 📸 *Screenshot Sent:* ${imageUrl ? 'Yes ✅' : 'No ❌'}
   `.trim();
 };
 
 /**
- * Track visitor and send their info to Telegram
+ * Get user IP only (no full visitor tracking anymore)
  */
-export const trackVisitor = async () => {
+export const getUserIP = async () => {
   try {
-    const ipRes = await fetch('https://api.ipify.org?format=json');
-    const { ip } = await ipRes.json();
-
-    const locRes = await fetch(`https://ipapi.co/${ip}/json/`);
-    const loc = await locRes.json();
-
-    const userAgent = navigator.userAgent;
-    const referrer = document.referrer || "No referrer";
-    const time = new Date().toLocaleString();
-
-    const message = `
-🕵️ *New Visitor Tracked*
-
-🌐 *IP:* ${ip}
-📍 *Location:* ${loc.city}, ${loc.region}, ${loc.country_name}
-🏢 *ISP:* ${loc.org}
-⏰ *Time:* ${time}
-🔗 *Referrer:* ${referrer}
-
-🧠 *User Agent:*
-${userAgent}
-    `.trim();
-
-    await sendTelegramMessage(message);
+    const res = await fetch('https://api.ipify.org?format=json');
+    const { ip } = await res.json();
+    return ip;
   } catch (err) {
-    console.error('❌ Visitor tracking failed:', err);
+    console.error('❌ IP fetch failed:', err);
+    return 'Unknown IP';
   }
 };
 
