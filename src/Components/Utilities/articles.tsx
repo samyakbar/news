@@ -1,6 +1,6 @@
 import Trump from '../../assets/trump.webp'
 import Breden from '../../assets/breden.jpg'
-import Breden2 from '../../assets/breden2.jpg'
+// import Breden2 from '../../assets/breden2.jpg'
 import Breden3 from '../../assets/breden3.jpg'
 import Breden4 from '../../assets/breden4.jpg'
 import BredenKids from '../../assets/bredenKid.jpg'
